@@ -1,0 +1,52 @@
+<title>Web Scraper</title>
+<link rel="stylesheet" media="screen" href="static/bootstrap.min.css">
+<link rel="stylesheet" href="static/bootstrap-theme.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<div class="container">
+    <h2>Web Scraping</h2>
+    <form action="" method="post" role="form">
+        {{ form.csrf }}
+        <div class="form-group">
+            <label for="url">URL:</label>
+            <input type="url" class="form-control" id="url" name="url" placeholder="Web page to scraping?"></div>
+        <button type="submit" class="btn btn-success">Scraping</button>
+    </form>
+    {% if data %}
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Each word's frequency</th>
+                    <th scope="col">Longest word</th>
+                    <th scope="col">Most common letter</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td> {{ data.words_frequency }} </td>
+                    <td> {{ data.longest_word }} </td>
+                    <td> {{ data.best_letter }} </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Web page text</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        {% autoescape false %}
+                        {{ data.text }}
+                        {% endautoescape %}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+    {% endif %}
+</div>
